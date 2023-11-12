@@ -1,4 +1,4 @@
-# Example App
+# Project requirements
 
 As a startup company we run very fast while trying to code our infrastructure without repeating ourselves.
 
@@ -45,7 +45,7 @@ Please add this Tags to all of your created resources:
 
 | Tag Name | Value | Required | Comments |
 | :--- | :--- | :---: | :--- |
-| Name | Avi Langburd (Your Name) | Yes | |
+| Name | avilangburd (Your Name) | Yes | |
 | Owner | Nati | Yes | |
 | Department | DevOps | Yes | |
 | Temp | True | Yes | |
