@@ -24,7 +24,6 @@ def echo():
     }
 
     client_ip = request.remote_addr
-    client_ip = "82.166.109.216"
 
     ipinfo_url = f"https://ipinfo.io/{client_ip}?token={ipinfo_token}"
 
