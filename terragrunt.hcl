@@ -15,7 +15,6 @@ terraform {
 }
 
 locals {
-  common_vars   = yamldecode(file(find_in_parent_folders("vars.yaml")))
   environment   = basename(dirname(get_terragrunt_dir()))
   env_vars      = yamldecode(file(find_in_parent_folders("env.yaml")))
   resource      = basename(get_terragrunt_dir())

@@ -11,6 +11,7 @@ inputs:
           cidr: 10.150.0.0/22
         eks-public-1b:
           cidr: 10.150.4.0/22
+  eks_cluster_name: avilangburd
   tags:
     Department: DevOps
     GitRepository: https://github.com/langburd/p-shmonim-ve-ehad-example-app

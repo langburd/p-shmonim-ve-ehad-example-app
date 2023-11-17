@@ -43,9 +43,11 @@ resource "aws_subnet" "public" {
   tags = merge(
     var.tags,
     {
-      SubnetName       = each.key
-      AvailabilityZone = "${data.aws_region.current.name}${lower(substr(each.key, -1, 1))}"
-      SubnetType       = "Public"
+      SubnetName                                      = each.key
+      AvailabilityZone                                = "${data.aws_region.current.name}${lower(substr(each.key, -1, 1))}"
+      SubnetType                                      = "Public"
+      "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared"
+      "kubernetes.io/role/elb"                        = 1
     }
   )
 }

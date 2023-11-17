@@ -13,6 +13,12 @@ variable "vpc_subnets_map" {
   }
 }
 
+variable "eks_cluster_name" {
+  description = "Name of the EKS cluster"
+  type        = string
+  default     = ""
+}
+
 variable "tags" {
   description = "The tags to apply to the VPC"
   type        = map(string)
