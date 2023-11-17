@@ -2,7 +2,6 @@
 
 The EKS cluster is built as a PoC, just to demonstrate its capabilities.
 Due to its test/synthetic nature, many security related features were omitted.
-Please see comments in `.pre-commit-config.yaml`.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
