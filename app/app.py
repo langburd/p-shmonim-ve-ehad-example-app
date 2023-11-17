@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-"""Example Flask application."""
+"""Example echo server application prepared for Perimeter81."""
 import os
 
 import requests
-from flask import Flask, jsonify, request
+from flask import Flask, abort, jsonify, request
 
 app = Flask(__name__)
 
@@ -38,9 +38,12 @@ def echo():
 def serve_index():
     """Function serving the index.html file."""
 
-    with open(INDEX_HTML_PATH, "r", encoding="utf-8") as file:
-        content = file.read()
-    return content
+    try:
+        with open(INDEX_HTML_PATH, "r", encoding="utf-8") as file:
+            content = file.read()
+        return content
+    except FileNotFoundError:
+        abort(404)
 
 
 if __name__ == "__main__":
