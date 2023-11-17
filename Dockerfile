@@ -4,9 +4,11 @@ LABEL maintainer="Avi Langburd <avi@langburd.com>"
 
 WORKDIR /app
 
-COPY /app /app
+COPY /app/requirements.txt /app/requirements.txt
 
 RUN pip install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
+
+COPY /app /app
 
 ENV APP_ENVIRONMENT="Getting APP_ENVIRONMENT failed"
 

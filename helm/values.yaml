@@ -1,0 +1,58 @@
+---
+appEnvironment: development
+
+existingSecret: p81-exam
+
+replicaCount: 1
+
+image:
+  repository: ghcr.io/langburd/p-shmonim-ve-ehad-example-app
+  pullPolicy: Always # IfNotPresent
+  tag: ""
+
+imagePullSecrets: []
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 8080
+
+resources:
+  limits:
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+autoscaling:
+  enabled: false
+
+volumes:
+  - name: index-html
+    configMap:
+      name: p81-exam-index-html
+  - name: env-vars
+    configMap:
+      name: p81-exam-env-vars
+
+volumeMounts:
+  - name: index-html
+    mountPath: /app/web/
+    readOnly: true
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

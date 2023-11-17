@@ -3,7 +3,7 @@ tf_source: ../../../modules//eks
 
 inputs:
   cluster_name: avilangburd
-  cluster_version: 1.28
+  cluster_version: 1.27
   cluster_endpoint_public_access_cidrs: ["82.166.109.216/32"]
   cluster_addons:
     coredns:
@@ -15,7 +15,7 @@ inputs:
   eks_workers:
     default_node_group:
       min_size: 1
-      max_size: 1
+      max_size: 2
       desired_size: 1
       max_unavailable: 1
       instance_types: ["t3.medium"]

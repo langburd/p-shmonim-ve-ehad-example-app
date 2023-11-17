@@ -8,13 +8,11 @@ repos:
       - id: check-added-large-files
       - id: check-merge-conflict
       - id: check-vcs-permalinks
-      - id: forbid-new-submodules
 
       # Common errors
       - id: check-ast
       - id: check-builtin-literals
       - id: check-docstring-first
-      - id: check-json
       - id: check-yaml
       - id: end-of-file-fixer
       - id: fix-byte-order-marker
@@ -25,6 +23,18 @@ repos:
       - id: check-case-conflict
       - id: mixed-line-ending
         args: [--fix=lf]
+
+  # Dockerfile hook
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+      - id: hadolint
+
+  # Helm hook
+  - repo: https://github.com/gruntwork-io/pre-commit
+    rev: v0.1.23
+    hooks:
+      - id: helmlint
 
   # YAML hooks
   - repo: https://github.com/adrienverge/yamllint.git

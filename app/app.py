@@ -9,11 +9,9 @@ from flask import Flask, abort, jsonify, request
 app = Flask(__name__)
 
 # Get data from the environment variables
-app_environment = os.environ.get("APP_ENVIRONMENT", "Getting APP_ENVIRONMENT failed")
+app_environment = os.environ.get("APP_ENVIRONMENT", "undefined")
 ipinfo_token = os.environ.get("IPINFO_TOKEN", "")
-
-# Define the local path for index.html
-INDEX_HTML_PATH = "index.html"
+index_html_dir = os.environ.get("INDEX_HTML_DIR", "web")
 
 
 @app.route("/")
@@ -25,7 +23,12 @@ def echo():
 
     client_ip = request.remote_addr
 
-    ipinfo_url = f"https://ipinfo.io/{client_ip}?token={ipinfo_token}"
+    if ipinfo_token == "":
+        token_part_in_url = ""
+    else:
+        token_part_in_url = f"?token={ipinfo_token}"
+
+    ipinfo_url = f"https://ipinfo.io/{client_ip}{token_part_in_url}"
 
     ipinfo = requests.get(ipinfo_url, timeout=10)
 
@@ -39,7 +42,7 @@ def serve_index():
     """Function serving the index.html file."""
 
     try:
-        with open(INDEX_HTML_PATH, "r", encoding="utf-8") as file:
+        with open(f"{index_html_dir}/index.html", "r", encoding="utf-8") as file:
             content = file.read()
         return content
     except FileNotFoundError:
