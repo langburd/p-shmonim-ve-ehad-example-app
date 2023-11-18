@@ -1,0 +1,11 @@
+---
+tf_source: ../../../modules//route53
+
+inputs:
+  hosted_zone_name: p81.langburd.net
+  tags:
+    Department: DevOps
+    GitRepository: https://github.com/langburd/p-shmonim-ve-ehad-example-app
+    Name: avilangburd
+    Owner: Nati
+    Temp: true

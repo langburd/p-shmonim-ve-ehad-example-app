@@ -1,0 +1,5 @@
+---
+tf_source: ../../../modules//helm
+
+inputs:
+  app_name: exam

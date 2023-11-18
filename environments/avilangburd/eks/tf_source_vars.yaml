@@ -4,7 +4,6 @@ tf_source: ../../../modules//eks
 inputs:
   cluster_name: avilangburd
   cluster_version: 1.27
-  cluster_endpoint_public_access_cidrs: ["82.166.109.216/32"]
   cluster_addons:
     coredns:
       most_recent: true

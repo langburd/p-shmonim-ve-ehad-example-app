@@ -1,0 +1,12 @@
+---
+tf_source: ../../../modules//acm
+
+inputs:
+  hosted_zone_name: p81.langburd.net
+  app_name: exam
+  tags:
+    Department: DevOps
+    GitRepository: https://github.com/langburd/p-shmonim-ve-ehad-example-app
+    Name: avilangburd
+    Owner: Nati
+    Temp: true

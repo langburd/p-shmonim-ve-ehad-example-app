@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.0"
+  required_version = ">= 1.5"
 
   required_providers {
     aws = {
@@ -26,12 +26,14 @@ resource "aws_vpc" "this" {
   cidr_block           = var.vpc_cidr
   enable_dns_hostnames = true
   enable_dns_support   = true
-  tags                 = var.tags
+
+  tags = var.tags
 }
 
 resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
-  tags   = var.tags
+
+  tags = var.tags
 }
 
 resource "aws_subnet" "public" {
@@ -40,6 +42,7 @@ resource "aws_subnet" "public" {
   cidr_block              = each.value
   availability_zone       = "${data.aws_region.current.name}${lower(substr(each.key, -1, 1))}"
   map_public_ip_on_launch = true
+
   tags = merge(
     var.tags,
     {
@@ -55,7 +58,8 @@ resource "aws_subnet" "public" {
 resource "aws_route_table" "public" {
   count  = length(local.public_subnet_ids)
   vpc_id = aws_vpc.this.id
-  tags   = var.tags
+
+  tags = var.tags
 }
 
 resource "aws_route" "public" {

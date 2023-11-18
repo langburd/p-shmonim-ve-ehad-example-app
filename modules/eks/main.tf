@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.0"
+  required_version = ">= 1.5"
 
   required_providers {
     aws = {
@@ -49,7 +49,6 @@ resource "aws_eks_cluster" "this" {
   vpc_config {
     subnet_ids             = var.subnet_ids
     endpoint_public_access = true
-    public_access_cidrs    = var.cluster_endpoint_public_access_cidrs
   }
 
   tags = var.tags
