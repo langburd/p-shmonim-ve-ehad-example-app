@@ -9,6 +9,7 @@ terraform {
   }
 }
 
+# Main DNS zone
 resource "aws_route53_zone" "this" {
   name = var.hosted_zone_name
   tags = var.tags
@@ -16,6 +17,7 @@ resource "aws_route53_zone" "this" {
 
 data "aws_elb_hosted_zone_id" "this" {}
 
+# DNS record for application
 resource "aws_route53_record" "app" {
   zone_id = aws_route53_zone.this.zone_id
   name    = var.app_name

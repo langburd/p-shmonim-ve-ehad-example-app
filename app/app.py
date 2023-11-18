@@ -21,7 +21,10 @@ def echo():
         "app_environment": app_environment,
     }
 
-    client_ip = request.remote_addr
+    if request.headers.getlist("X-Forwarded-For"):
+        client_ip = request.headers.getlist("X-Forwarded-For")[0]
+    else:
+        client_ip = request.remote_addr
 
     if ipinfo_token == "":
         token_part_in_url = ""

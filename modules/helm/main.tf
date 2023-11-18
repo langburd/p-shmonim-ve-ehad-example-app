@@ -1,3 +1,4 @@
+# Providers
 terraform {
   required_version = ">= 1.5"
 
@@ -43,6 +44,7 @@ provider "helm" {
   }
 }
 
+# Nginx Ingress Controller
 resource "helm_release" "ingress_nginx" {
   name          = "ingress-nginx"
   repository    = "https://kubernetes.github.io/ingress-nginx"
@@ -65,15 +67,23 @@ data "kubernetes_service" "ingress_nginx" {
   depends_on = [helm_release.ingress_nginx]
 }
 
-# resource "kubernetes_namespace" "app" {
-#   metadata {
-#     name = var.app_name
-#   }
-# }
+# Application
+resource "kubernetes_namespace" "app" {
+  metadata {
+    name = var.app_name
+  }
+}
 
-# resource "helm_release" "app" {
-#   name  = var.app_name
-#   chart = "../../helm"
-
-#   depends_on = [kubernetes_namespace.app]
-# }
+resource "helm_release" "app" {
+  name      = var.app_name
+  namespace = kubernetes_namespace.app.metadata[0].name
+  chart     = abspath("${path.module}/../../../../../../../helm")
+  values = [
+    templatefile("${path.module}/templates/app.tpl", {
+      app_environment = var.app_environment
+      app_name        = var.app_name
+      host_name       = "${var.app_name}.${var.hosted_zone_name}"
+    })
+  ]
+  depends_on = [kubernetes_namespace.app]
+}

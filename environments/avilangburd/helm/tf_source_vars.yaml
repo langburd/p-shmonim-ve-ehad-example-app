@@ -2,4 +2,6 @@
 tf_source: ../../../modules//helm
 
 inputs:
+  app_environment: whateveryouwant
   app_name: exam
+  hosted_zone_name: p81.langburd.net

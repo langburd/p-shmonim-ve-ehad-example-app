@@ -12,8 +12,8 @@ The requirements of the project are described in [REQUIREMENTS.md](REQUIREMENTS.
 ## Build the image and push it to the container registry
 
 ```shell
-docker build --platform linux/amd64 -t ghcr.io/langburd/p-shmonim-ve-ehad-example-app:v1.0.3 .
-docker push ghcr.io/langburd/p-shmonim-ve-ehad-example-app:v1.0.3
+docker build --platform linux/amd64 -t ghcr.io/langburd/p-shmonim-ve-ehad-example-app:v1.0.4 .
+docker push ghcr.io/langburd/p-shmonim-ve-ehad-example-app:v1.0.4
 ```
 
 ## Create K8S Secret
@@ -30,4 +30,18 @@ type: Opaque
 data:
   IPINFO_TOKEN: $(echo -n "very_secret_token" | base64 -w0)
 EOF
+```
+
+## Deploy application only
+
+```shell
+cd environments/avilangburd/helm
+terragrunt apply
+```
+
+## Deploy all infrastructure and application resources
+
+```shell
+cd environments
+terragrunt run-all apply
 ```
