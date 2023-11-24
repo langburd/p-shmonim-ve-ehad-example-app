@@ -4,5 +4,5 @@ name: p81-exam
 description: A Helm chart for Kubernetes
 icon: https://play-lh.googleusercontent.com/IDv8edvjhcNzogSagAD6kyhURbmJWSv7vHliwPisxAvOnXpAPfa6HBtk0S64hQcr8w
 type: application
-version: 1.0.4
-appVersion: "v1.0.4"
+version: 1.0.5
+appVersion: "v1.0.5"

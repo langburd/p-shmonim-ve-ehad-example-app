@@ -58,9 +58,3 @@ rules:
   truthy: disable
   # Defaults
   # level: warning
-
-ignore: |
-  modules/aws/eks/helm-charts-infra/external-dns/values.yaml
-  modules/aws/eks/helm-charts-infra/atlantis/values.yaml
-  modules/aws/eks/helm-charts-infra/grafana/values.yaml
-  modules/aws/eks/helm-charts-infra/nginx-ingress/public.yaml
