@@ -57,5 +57,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_add_kubeconfig"></a> [add\_kubeconfig](#output\_add\_kubeconfig) | Command to add the EKS cluster to your kubeconfig |
 | <a name="output_cluster_name"></a> [cluster\_name](#output\_cluster\_name) | Name of the EKS cluster |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

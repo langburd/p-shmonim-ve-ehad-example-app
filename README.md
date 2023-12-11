@@ -42,7 +42,7 @@ pre-commit run -a
 ## Build the image and push it to the container registry
 
 ```shell
-docker build --platform linux/amd64 -t ghcr.io/langburd/p-shmonim-ve-ehad-example-app:v1.0.6 . && docker push ghcr.io/langburd/p-shmonim-ve-ehad-example-app:v1.0.6
+docker build --platform linux/amd64 -t ghcr.io/langburd/p-shmonim-ve-ehad-example-app:v1.0.7 . && docker push ghcr.io/langburd/p-shmonim-ve-ehad-example-app:v1.0.7
 ```
 
 ## Deploy all infrastructure and application resources
@@ -50,22 +50,6 @@ docker build --platform linux/amd64 -t ghcr.io/langburd/p-shmonim-ve-ehad-exampl
 ```shell
 cd environments
 terragrunt run-all apply
-```
-
-## Create K8S Secret
-
-- Since secret management is also outside the scope of the project, the K8S `Secret` containing sensitive data is also created manually.
-
-```shell
-kubectl apply -f - <<EOF
-apiVersion: v1
-kind: Secret
-metadata:
-  name: p81-exam
-type: Opaque
-data:
-  IPINFO_TOKEN: $(echo -n "very_secret_token" | base64 -w0)
-EOF
 ```
 
 ## Deploy application only

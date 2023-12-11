@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 
 """Example echo server application prepared for Perimeter81."""
+
 import os
 
-import requests
+import geocoder
 from flask import Flask, abort, jsonify, request
 
 app = Flask(__name__)
 
 # Get data from the environment variables
 app_environment = os.environ.get("APP_ENVIRONMENT", "undefined")
-ipinfo_token = os.environ.get("IPINFO_TOKEN", "")
 index_html_dir = os.environ.get("INDEX_HTML_DIR", "web")
 
 
@@ -18,8 +18,8 @@ index_html_dir = os.environ.get("INDEX_HTML_DIR", "web")
 def echo():
     """Main function returning the given echo string and geo location of the user."""
     echo_string = {
-        "app_environment": app_environment,
-        "app_repository": "https://github.com/langburd/p-shmonim-ve-ehad-example-app",
+        "_app_environment": app_environment,
+        "_app_repository": "https://github.com/langburd/p-shmonim-ve-ehad-example-app",
     }
 
     if request.headers.getlist("X-Forwarded-For"):
@@ -27,18 +27,9 @@ def echo():
     else:
         client_ip = request.remote_addr
 
-    if ipinfo_token == "":
-        token_part_in_url = ""
-    else:
-        token_part_in_url = f"?token={ipinfo_token}"
+    geo_location_data = geocoder.ip(client_ip)
 
-    ipinfo_url = f"https://ipinfo.io/{client_ip}{token_part_in_url}"
-
-    # ipinfo_url = f"https://ipapi.co/{client_ip}/json/"
-
-    ipinfo = requests.get(ipinfo_url, timeout=10)
-
-    response_data = echo_string | ipinfo.json()
+    response_data = echo_string | geo_location_data.json
 
     return jsonify(response_data)
 
@@ -56,5 +47,4 @@ def serve_index():
 
 
 if __name__ == "__main__":
-    # Run the Flask application
     app.run(host="0.0.0.0", port=8080)

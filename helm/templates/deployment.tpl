@@ -36,11 +36,6 @@ spec:
             - name: APP_ENVIRONMENT
               value: {{.Values.appEnvironment}}
             {{- if .Values.existingSecret }}
-            - name: IPINFO_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.existingSecret }}
-                  key: IPINFO_TOKEN
             {{- end }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
