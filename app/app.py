@@ -27,14 +27,14 @@ def echo():
     else:
         client_ip = request.remote_addr
 
-    # if ipinfo_token == "":
-    #     token_part_in_url = ""
-    # else:
-    #     token_part_in_url = f"?token={ipinfo_token}"
+    if ipinfo_token == "":
+        token_part_in_url = ""
+    else:
+        token_part_in_url = f"?token={ipinfo_token}"
 
-    # ipinfo_url = f"https://ipinfo.io/{client_ip}{token_part_in_url}"
+    ipinfo_url = f"https://ipinfo.io/{client_ip}{token_part_in_url}"
 
-    ipinfo_url = f"https://ipapi.co/{client_ip}/json/"
+    # ipinfo_url = f"https://ipapi.co/{client_ip}/json/"
 
     ipinfo = requests.get(ipinfo_url, timeout=10)
 
