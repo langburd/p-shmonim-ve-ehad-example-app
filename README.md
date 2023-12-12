@@ -42,7 +42,9 @@ pre-commit run -a
 ## Build the image and push it to the container registry
 
 ```shell
-docker build --platform linux/amd64 -t ghcr.io/langburd/p-shmonim-ve-ehad-example-app:v1.0.7 . && docker push ghcr.io/langburd/p-shmonim-ve-ehad-example-app:v1.0.7
+VERSION=$(cat helm/Chart.yaml| yq -r '.appVersion') && \
+docker build --platform linux/amd64 -t ghcr.io/langburd/p-shmonim-ve-ehad-example-app:$VERSION . && \
+docker push ghcr.io/langburd/p-shmonim-ve-ehad-example-app:$VERSION
 ```
 
 ## Deploy all infrastructure and application resources
