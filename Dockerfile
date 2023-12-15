@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.11-alpine
 
 LABEL maintainer="Avi Langburd <avi@langburd.com>"
 
@@ -9,8 +9,6 @@ COPY /app/requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
 
 COPY /app /app
-
-ENV APP_ENVIRONMENT="Getting APP_ENVIRONMENT failed"
 
 EXPOSE 8080
 

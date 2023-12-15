@@ -11,6 +11,7 @@ app = Flask(__name__)
 
 # Get data from the environment variables
 app_environment = os.environ.get("APP_ENVIRONMENT", "undefined")
+app_version = os.environ.get("APP_VERSION", "v1.0.0")
 index_html_dir = os.environ.get("INDEX_HTML_DIR", "web")
 
 
@@ -19,6 +20,7 @@ def echo():
     """Main function returning the given echo string and geo location of the user."""
     echo_string = {
         "_app_environment": app_environment,
+        "_app_version": app_version,
         "_app_repository": "https://github.com/langburd/p-shmonim-ve-ehad-example-app",
     }
 

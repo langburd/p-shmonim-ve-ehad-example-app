@@ -34,7 +34,9 @@ spec:
         - name: {{ .Chart.Name }}
           env:
             - name: APP_ENVIRONMENT
-              value: {{.Values.appEnvironment}}
+              value: {{ .Values.appEnvironment }}
+            - name: APP_VERSION
+              value: {{ .Chart.AppVersion }}
             {{- if .Values.existingSecret }}
             {{- end }}
           securityContext:

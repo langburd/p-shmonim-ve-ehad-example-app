@@ -42,9 +42,10 @@ pre-commit run -a
 ## Build the image and push it to the container registry
 
 ```shell
-VERSION=$(cat helm/Chart.yaml| yq -r '.appVersion') && \
-docker build --platform linux/amd64 -t ghcr.io/langburd/p-shmonim-ve-ehad-example-app:$VERSION . && \
-docker push ghcr.io/langburd/p-shmonim-ve-ehad-example-app:$VERSION
+REGISTRY=ghcr.io/langburd/p-shmonim-ve-ehad-example-app
+VERSION=$(cat helm/Chart.yaml| yq -r '.appVersion')
+docker build --platform linux/amd64 -t $REGISTRY:$VERSION .
+docker push $REGISTRY:$VERSION
 ```
 
 ## Deploy all infrastructure and application resources
@@ -54,9 +55,14 @@ cd environments
 terragrunt run-all apply
 ```
 
+## Deploy single resource
+
+```shell
+terragrunt apply --terragrunt-working-dir environments/<env>/<resource>
+```
+
 ## Deploy application only
 
 ```shell
-cd environments/avilangburd/helm
-terragrunt apply
+terragrunt apply --terragrunt-working-dir environments/avilangburd/helm
 ```
